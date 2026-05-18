@@ -1,0 +1,11 @@
+theme = TokyoNight Moon
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-style = Regular
+font-size = 16
+
+# Cursor styling
+cursor-style = "block"
+cursor-style-blink = false
+
+# custom-shader =

@@ -1,0 +1,14 @@
+[user]
+	name = Ethan Murray
+	email = ethanmurray3@icloud.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOBAbPg23ev73qvUWvmW5lEuChXeO1w52RgX46Yf2jvf
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true

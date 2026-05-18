@@ -1,0 +1,6 @@
+\.DS_Store$
+^/README\.md$
+^/\.gitignore$
+^/\.stow-local-ignore$
+^/\.git$
+\.gitkeep$
