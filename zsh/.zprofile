@@ -20,3 +20,7 @@ elif [ -x /usr/local/bin/brew ]; then
 elif [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
+
+if [ -d /opt/homebrew/opt/rustup/bin ]; then
+  export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+fi
