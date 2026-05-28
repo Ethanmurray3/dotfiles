@@ -9,3 +9,6 @@ cursor-style = "block"
 cursor-style-blink = false
 
 # custom-shader =
+#
+#
+macos-option-as-alt = true
