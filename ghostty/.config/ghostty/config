@@ -11,4 +11,7 @@ cursor-style-blink = false
 # custom-shader =
 #
 #
-macos-option-as-alt = true
+macos-option-as-alt = left
+
+keybind = alt+left=unbind
+keybind = alt+right=unbind

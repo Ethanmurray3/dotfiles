@@ -1,68 +1,65 @@
 local ollama_chat_model = "qwen2.5-coder:7b"
 local ollama_completion_model = "qwen2.5-coder:1.5b"
 
-local function add_unique(list, value)
-  for _, item in ipairs(list) do
-    if item == value then
-      return
-    end
-  end
-
-  table.insert(list, value)
-end
-
 return {
   {
     "milanglacier/minuet-ai.nvim",
-    event = "InsertEnter",
-    cmd = "Minuet",
-    opts = {
-      provider = "openai_fim_compatible",
-      n_completions = 1,
-      request_timeout = 5,
-      context_window = 1024,
-      throttle = 600,
-      debounce = 250,
-      provider_options = {
-        openai_fim_compatible = {
-          api_key = "TERM",
-          name = "Ollama",
-          end_point = "http://localhost:11434/v1/completions",
-          model = ollama_completion_model,
-          stream = false,
-          optional = {
-            max_tokens = 96,
-            top_p = 0.9,
+    config = function()
+      require("minuet").setup({
+        provider = "openai_fim_compatible",
+        n_completions = 1,
+        request_timeout = 5,
+        context_window = 1024,
+        throttle = 600,
+        debounce = 250,
+        cmp = {
+          enable_auto_complete = true,
+        },
+        provider_options = {
+          openai_fim_compatible = {
+            api_key = "TERM",
+            name = "Ollama",
+            end_point = "http://localhost:11434/v1/completions",
+            model = ollama_completion_model,
+            stream = false,
+            optional = {
+              max_tokens = 96,
+              top_p = 0.9,
+            },
           },
         },
-      },
-    },
+      })
+    end,
   },
-
   {
     "saghen/blink.cmp",
     optional = true,
-    opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      opts.sources.default = opts.sources.default or { "lsp", "path", "snippets", "buffer" }
-      add_unique(opts.sources.default, "minuet")
-
-      opts.sources.providers = opts.sources.providers or {}
-      opts.sources.providers.minuet = {
-        name = "minuet",
-        module = "minuet.blink",
-        async = true,
-        timeout_ms = 5000,
-        score_offset = 80,
-      }
-
-      opts.keymap = opts.keymap or {}
-      opts.keymap["<A-y>"] = require("minuet").make_blink_map()
-
-      opts.completion = opts.completion or {}
-      opts.completion.trigger = opts.completion.trigger or {}
-      opts.completion.trigger.prefetch_on_insert = false
-    end,
+    opts = {
+      keymap = {
+        ["<C-j>"] = {
+          function(cmp)
+            cmp.show({ providers = { "minuet" } })
+          end,
+        },
+      },
+      sources = {
+        default = { "lsp", "path", "buffer", "snippets", "minuet" },
+        providers = {
+          minuet = {
+            name = "minuet",
+            module = "minuet.blink",
+            async = true,
+            timeout_ms = 3000,
+            score_offset = 50,
+          },
+        },
+      },
+      completion = {
+        trigger = {
+          prefetch_on_insert = false,
+        },
+      },
+    },
   },
 
   {
@@ -75,7 +72,9 @@ return {
       "CodeCompanionCmd",
     },
     keys = {
-      { "<leader>aa", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "AI actions" },
+      { "<leader>aa", "<cmd>CodeCompanion<cr>", mode = "n", desc = "AI prompt" },
+      { "<leader>aa", ":CodeCompanion<cr>", mode = "v", desc = "AI prompt selection" },
+      { "<leader>as", "<cmd>CodeCompanionActions<cr>", mode = { "n", "v" }, desc = "AI actions" },
       { "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", mode = { "n", "v" }, desc = "AI chat" },
       { "<leader>ad", "<cmd>CodeCompanion /lsp<cr>", mode = { "n", "v" }, desc = "AI explain diagnostic" },
       { "<leader>ae", "<cmd>CodeCompanion /explain<cr>", mode = { "n", "v" }, desc = "AI explain code" },
