@@ -70,12 +70,6 @@ if [[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]]; then
   source /opt/homebrew/opt/fzf/shell/completion.zsh
 fi
 
-# macOS / Homebrew (Intel)
-if [[ -f /usr/local/opt/fzf/shell/key-bindings.zsh ]]; then
-  source /usr/local/opt/fzf/shell/key-bindings.zsh
-  source /usr/local/opt/fzf/shell/completion.zsh
-fi
-
 # Arch
 if [[ -f /usr/share/fzf/key-bindings.zsh ]]; then
   source /usr/share/fzf/key-bindings.zsh
