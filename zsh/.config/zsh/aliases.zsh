@@ -29,6 +29,8 @@ alias df='df -h'
 # =========================================================
 
 alias -- -='cd -'  # -- prevents - being parsed as a flag; cd - jumps to previous directory
+alias cd='z'
+alias zz='z -'
 
 lf() { # zsh follow lf navigation
     tmp=$(mktemp)
