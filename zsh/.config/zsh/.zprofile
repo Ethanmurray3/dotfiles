@@ -13,6 +13,7 @@ path=(
   /pkg/env/global/bin
   /opt/homebrew/bin
   /Applications/Ghostty.app/Contents/MacOS
+  ~/.cargo/bin/
 )
 
 export PATH
