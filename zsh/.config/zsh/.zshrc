@@ -109,3 +109,18 @@ source "$ZDOTDIR/prompt.zsh"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+
+
+# =========================================================
+# run system info summary
+# =========================================================
+
+if command -v fastfetch >/dev/null 2>&1; then
+  fastfetch
+elif command -v screenfetch >/dev/null 2>&1; then
+  screenfetch
+fi
+
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+fi

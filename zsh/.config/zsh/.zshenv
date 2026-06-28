@@ -27,7 +27,7 @@ export STARSHIP_CONFIG="$ZDOTDIR/starship.toml"
 
 # ---------- PATH ----------
 # Personal binaries/scripts
-# export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 
 # ---------- eza theme location ----------
 export EZA_CONFIG_DIR="$XDG_CONFIG_HOME/eza"
